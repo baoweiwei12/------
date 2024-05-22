@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>meetings</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="static/sdk/sdk.css" />
+    <link rel="stylesheet" href="static/sdk/helper.css" />
+    <link rel="stylesheet" href="static/sdk/iconfont.css" />
+    <style>
+        html,
+        body,
+        .app-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root" class="app-wrapper"></div>
+    <script src="static/sdk/sdk.js"></script>
+    <script type="text/javascript">
+        (function () {
+            let amis = amisRequire('amis/embed');
+            let amisJSON = {
+                "type": "page",
+                "body": {
+                    "type": "crud",
+                    "api": "/api/meetings",
+                    "syncLocation": true,
+                    "headerToolbar": [
+                        {
+                            "type": "columns-toggler",
+                            "align": "right",
+                            "draggable": true,
+                            "icon": "fas fa-cog",
+                            "overlay": true,
+                            "footerBtnSize": "sm"
+                        },
+                        "export-excel"
+                    ],
+                    "filter": {
+                        "debug": false,
+                        "title": "搜索会议",
+                        "body": [
+                            {
+                                "type": "group",
+                                "body": [
+                                    {
+                                        "type": "input-text",
+                                        "name": "keywords",
+                                        "label": "关键字",
+                                        "clearable": true,
+                                        "placeholder": "通过关键字搜索",
+                                        "size": "sm"
+                                    },
+                                ]
+                            }
+                        ],
+                        "actions": [
+                            {
+                                "type": "reset",
+                                "label": "清空条件"
+                            },
+                            {
+                                "type": "submit",
+                                "level": "primary",
+                                "label": "查询"
+                            }
+                        ]
+                    },
+                    "columns": [
+                        {
+                            "name": "id",
+                            "label": "ID",
+                        },
+                        {
+                            "name": "cff",
+                            "label": "CFF"
+                        },
+                        {
+                            "name": "core",
+                            "label": "CORE",
+
+                        },
+                        {
+                            "name": "qualts",
+                            "label": "QUALTS"
+                        },
+                        {
+                            "name": "abbreviation",
+                            "label": "简称",
+                        },
+                        {
+                            "name": "full_name",
+                            "label": "全称"
+                        },
+                        {
+                            "name": "is_postponement",
+                            "label": "是否延期",
+                            "type": "tpl",
+                            "tpl": "${is_postponement ? '延期' : '未延期'}"
+                        },
+                        {
+                            "name": "submission_deadline",
+                            "label": "提交截止日期",
+                            "type": "date"
+                        },
+                        {
+                            "name": "notification_date",
+                            "label": "通知日期",
+                            "type": "date"
+                        },
+                        {
+                            "name": "conference_date",
+                            "label": "会议日期",
+                            "type": "date"
+                        },
+                        {
+                            "name": "conference_location",
+                            "label": "会议地点",
+                            "type": "text"
+                        },
+                        {
+                            "name": "session_number",
+                            "label": "会议场次",
+                            "type": "number"
+                        }
+                    ]
+                }
+            };
+            let amisScoped = amis.embed('#root', amisJSON);
+        })();
+    </script>
+</body>
+
+</html>
