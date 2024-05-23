@@ -34,6 +34,7 @@ class Journal(BaseModel):
     submission_deadline: datetime |None
     impact_factor: float | None
     publisher: str | None 
+    issn: str | None
 
     class Config:
         from_attributes = True

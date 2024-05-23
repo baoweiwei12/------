@@ -31,3 +31,4 @@ class Journal(Base):
     submission_deadline = Column(DateTime)
     impact_factor = Column(Float)
     publisher = Column(String(100))
+    issn = Column(String(50))

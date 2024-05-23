@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>meetings</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="static/sdk/sdk.css" />
+    <link rel="stylesheet" href="static/sdk/helper.css" />
+    <link rel="stylesheet" href="static/sdk/iconfont.css" />
+    <style>
+        html,
+        body,
+        .app-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root" class="app-wrapper"></div>
+    <script src="static/sdk/sdk.js"></script>
+    <script type="text/javascript">
+        let token = localStorage.getItem('token');
+        (function () {
+            let amis = amisRequire('amis/embed');
+
+            let amisJSON = {
+                "type": "page",
+                "body": {
+                    "type": "flex",
+                    "direction": "column",
+                    "items": [
+                        {
+                            "type": "tpl",
+                            "body": "未开始的会议"
+                        },
+                        {
+                            "type": "crud",
+                            "api": "/api/unexpired-meetings",
+                            "syncLocation": true,
+                            "columns": [
+                                {
+                                    "name": "cff",
+                                    "label": "CFF"
+                                },
+                                {
+                                    "name": "core",
+                                    "label": "CORE",
+
+                                },
+                                {
+                                    "name": "qualts",
+                                    "label": "QUALTS"
+                                },
+                                {
+                                    "name": "abbreviation",
+                                    "label": "简称",
+                                },
+                                {
+                                    "name": "full_name",
+                                    "label": "全称"
+                                },
+                                {
+                                    "name": "conference_date",
+                                    "label": "会议日期",
+                                    "type": "date"
+                                },
+                                {
+                                    "name": "conference_location",
+                                    "label": "会议地点",
+                                    "type": "text"
+                                },
+                                {
+                                    "name": "session_number",
+                                    "label": "会议场次",
+                                    "type": "number"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "divider"
+                        },
+                        {
+                            "type": "tpl",
+                            "body": "已过期的会议"
+                        },
+
+                        {
+                            "type": "crud",
+                            "api": "/api/expired-meetings",
+                            "syncLocation": true,
+                            "columns": [
+                                {
+                                    "name": "cff",
+                                    "label": "CFF"
+                                },
+                                {
+                                    "name": "core",
+                                    "label": "CORE",
+
+                                },
+                                {
+                                    "name": "qualts",
+                                    "label": "QUALTS"
+                                },
+                                {
+                                    "name": "abbreviation",
+                                    "label": "简称",
+                                },
+                                {
+                                    "name": "full_name",
+                                    "label": "全称"
+                                },
+                                {
+                                    "name": "conference_date",
+                                    "label": "会议日期",
+                                    "type": "date"
+                                },
+                                {
+                                    "name": "conference_location",
+                                    "label": "会议地点",
+                                    "type": "text"
+                                },
+                                {
+                                    "name": "session_number",
+                                    "label": "会议场次",
+                                    "type": "number"
+                                }
+                            ]
+                        }
+                    ]
+                },
+            };
+            let amisScoped = amis.embed('#root', amisJSON);
+        })();
+    </script>
+</body>
+
+</html>
